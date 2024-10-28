@@ -29,7 +29,7 @@
             </thead>
             <tbody>
                 <!-- Boucle sur les articles récupérés -->
-                <tr v-for="(article, index) in articleStore.articles.data" :key="article.id">
+                <tr v-for="(article, index) in articleStore.articles" :key="article.id">
                     <td>
                         <input class="form-check-input" v-model="article.selected" type="checkbox" :id="article.id"
                             name="flexCheckDefault">
@@ -151,7 +151,7 @@ const employeeForm = ref({
 const isEditing = ref(false);
 
 // Computed property to check if any articles are selected
-const isSelected = computed(() => articleStore.articles.data?.some((article: ContractArticle) => article.selected) ?? false);
+const isSelected = computed(() => articleStore.articles.some((article: ContractArticle) => article.selected) ?? false);
 
 // Function to open the generate contract modal
 const openGenerateContractModal = () => {
@@ -161,7 +161,7 @@ const openGenerateContractModal = () => {
 
 // Function to handle contract generation
 const generateContract = () => {
-    const selectedArticles = articleStore.articles.data.filter((article: ContractArticle) => article.selected);
+    const selectedArticles = articleStore.articles.filter((article: ContractArticle) => article.selected);
     const employeeDetails = { ...employeeForm.value };
 
     // Initialize jsPDF
